@@ -5,8 +5,16 @@
         void Accelerate();
         void Brake();
         void ChangeGear(int gear);
+    }
+
+    public interface IHaveARadio
+    {
         void TurnOnRadio();
         void TurnOffRadio();
+    }
+
+    public interface IHaveASunRoof
+    {
         void OpenSunRoof(int percentOpen);
         void CloseSunRoof();
     }

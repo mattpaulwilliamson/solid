@@ -10,15 +10,17 @@ namespace BreakingOpenClosedPrinciple
     {
         public static void Main()
         {
-            var product1 = new Product(4.52m, ProductType.Standard);
-            var product2 = new Product(3.99m, ProductType.Featured);
+            var standard = new StandardProduct(4.52m);
+            var featured = new FeaturedProduct(3.99m);
+            var bonus = new BonusProduct(3.99m);
 
-            var products = new List<Product>();
+            var products = new List<IProduct>();
 
-            products.Add(product1);
-            products.Add(product2);
+            products.Add(standard);
+            products.Add(featured);
+            products.Add(bonus);
 
-            foreach (Product product in products)
+            foreach (IProduct product in products)
             {
                 product.Render();
             }

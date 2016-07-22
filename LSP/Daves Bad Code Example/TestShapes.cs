@@ -17,9 +17,10 @@ namespace TestBreakingLSP
         [Test]
         public void ShouldCalculateAreaOfSquare()
         {
-            Rectangle rectangle = new Square {Height = 5, Width = 4};
+            var square = new Square {Side = 5};
 
-            Assert.That(rectangle.Area(), Is.EqualTo(20));
+            Assert.That(square.Area(), Is.EqualTo(25));
         }
+        
     }
 }

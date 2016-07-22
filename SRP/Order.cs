@@ -12,7 +12,8 @@ namespace BreakingSingleResponsibility
             }
             catch (Exception ex)
             {
-                System.IO.File.WriteAllText(@"C:\Error.txt", ex.ToString());
+                var log = new logger();
+                log.logMeUp(ex);
             }
         }
     }

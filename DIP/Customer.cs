@@ -4,7 +4,12 @@ namespace BreakingDependencyInversionPrinciple
 {
     public class Customer
     {
-        ExceptionLogger _exceptionLogger = new ExceptionLogger();
+        private readonly IExceptionLogger _logger;
+
+        public Customer(IExceptionLogger logger)
+        {
+            _logger = logger;
+        }
 
         public void Add()
         {
@@ -14,12 +19,17 @@ namespace BreakingDependencyInversionPrinciple
             }
             catch (Exception ex)
             {
-                _exceptionLogger.Log(ex);
+                _logger.Log(ex);
             }
         }
     }
 
-    public class ExceptionLogger
+    public interface IExceptionLogger
+    {
+        void Log(Exception ex);
+    }
+
+    public class ExceptionLogger : IExceptionLogger
     {
         public void Log(Exception ex)
         {
@@ -27,7 +37,8 @@ namespace BreakingDependencyInversionPrinciple
         }
     }
 
-#region What's wrong with the above?
+
+    #region What's wrong with the above?
 // The Customer class nicely delegates responsibility for logging exceptions to the ExceptionLogger class 
 // (therefore adhering to SRP). Unfortunately this code breaks the Dependency Inversion Principle, 
 // because it magically creates a instance of the ExceptionLogger internally when and instance 
